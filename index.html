@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#090b13">
+  <title>Adam's Ars Plus Wiki</title>
+  <meta name="description" content="Интерактивная русская вики по Adam's Ars Plus 5.0.3 для Minecraft 1.20.1">
+  <link rel="icon" type="image/png" href="assets/true_elemental_soul_frame.png">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <canvas id="arcane-bg" aria-hidden="true"></canvas>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#home" data-route="home" aria-label="Главная">
+        <span class="brand-mark"><span class="brand-core soul-sprite" data-soul="true_elemental_soul"></span></span>
+        <span><strong>ADAM'S ARS</strong><small>PLUS WIKI</small></span>
+      </a>
+      <nav class="main-nav" aria-label="Разделы вики">
+        <button class="nav-link active" data-route="home"><span class="nav-icon">✦</span><span>Главная</span></button>
+        <button class="nav-link" data-route="progression"><span class="nav-icon">⌁</span><span>Прогрессия</span></button>
+        <button class="nav-link" data-route="structures"><span class="nav-icon">⌂</span><span>Структуры</span></button>
+        <button class="nav-link" data-route="armor"><span class="nav-icon">◇</span><span>Броня</span></button>
+        <button class="nav-link" data-route="glyphs"><span class="nav-icon">⌘</span><span>Глифы</span></button>
+        <button class="nav-link" data-route="shadows"><span class="nav-icon">◉</span><span>Десять теней</span></button>
+        <button class="nav-link" data-route="recipes"><span class="nav-icon">▦</span><span>Рецепты</span><b class="nav-count" id="recipe-count"></b></button>
+        <button class="nav-link" data-route="encyclopedia"><span class="nav-icon">▤</span><span>Энциклопедия</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="version-card"><span class="pulse-dot"></span><div><strong>v5.0.3</strong><small>Minecraft 1.20.1</small></div></div>
+        <p>Данные извлечены из JAR аддона и Ars Nouveau 4.12.7.</p>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobile-menu" aria-label="Открыть меню">☰</button>
+        <div class="global-search-wrap">
+          <span class="search-icon">⌕</span>
+          <input id="global-search" type="search" autocomplete="off" placeholder="Найти глиф, предмет, моба или рецепт…">
+          <kbd>Ctrl K</kbd>
+          <div class="search-results" id="search-results" hidden></div>
+        </div>
+        <button class="status-button" id="about-data"><span>●</span> JAR-анализ</button>
+      </header>
+      <div id="page-root" class="page-root"></div>
+      <footer class="site-footer"><span>Неофициальная исследовательская вики</span><span>Adam's Ars Plus 5.0.3 • Ars Nouveau 4.12.7</span></footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="modal-backdrop" hidden>
+    <article class="modal" id="modal" role="dialog" aria-modal="true">
+      <button class="modal-close" id="modal-close" aria-label="Закрыть">×</button>
+      <div id="modal-content"></div>
+    </article>
+  </div>
+
+  <template id="item-icon-template"><span class="mc-icon"></span></template>
+  <script src="data/wiki-data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
