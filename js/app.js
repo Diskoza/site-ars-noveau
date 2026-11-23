@@ -205,6 +205,7 @@
     document.querySelectorAll('[data-soul]').forEach(el=>{const id=el.dataset.soul;const f=soulFrames[id]||1;el.style.setProperty('--frames',f);el.style.setProperty('--end',`${-(f-1)*(el.clientWidth||72)}px`);el.style.backgroundImage=`url('assets/adamsarsplus/textures/item/${id}.png')`;el.style.backgroundSize=`${el.clientWidth||72}px auto`;});
   }
 
+  // Main navigation
   document.querySelectorAll('[data-route]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();setRoute(el.dataset.route)}));
   document.getElementById('mobile-menu').addEventListener('click',()=>sidebar.classList.toggle('open'));
   document.getElementById('modal-close').addEventListener('click',closeModal);
@@ -213,6 +214,7 @@
   window.addEventListener('popstate',()=>setRoute(location.hash.slice(1)||'home',false));
   document.getElementById('about-data').addEventListener('click',()=>openModal(`<div class="modal-head">${soulSprite('elemental_soul')}<div><h2>О достоверности данных</h2><div class="id">Adam's Ars Plus 5.0.3 · Minecraft 1.20.1</div></div></div><div class="data-modal-list"><div><b>Подтверждено ресурсами</b><p>169 рецептов, 36 глифов, 76 предметов, 20 блоков, 26 сущностей, 21 эффект, 6 worldgen-структур и их биомы.</p></div><div><b>Частично разобрано по классам</b><p>Архимаги, броневые способности, Ten Shadows, адаптация Махораги, домены и собственные сетевые механики.</p></div><div><b>Следующий уровень анализа</b><p>Точные характеристики мобов, формулы урона, кулдауны, дроп, условия рангов сикигами и тесты поведения в реальном мире.</p></div></div>`));
 
+  // Search
   const searchInput=document.getElementById('global-search'), searchResults=document.getElementById('search-results');
   const searchIndex=[
     ...D.glyphs.map(x=>({type:'Глиф',name:x.name,en:x.en,id:`adamsarsplus:${x.id}`,icon:x.icon,action:()=>{setRoute('glyphs');setTimeout(()=>openGlyph(x.id),10)}})),
@@ -231,6 +233,7 @@
   document.getElementById('recipe-count').textContent=D.recipes.length;
   setRoute(location.hash.slice(1)||'home',false);
 
+  // Ambient canvas
   const canvas=document.getElementById('arcane-bg'),ctx=canvas.getContext('2d');let particles=[];
   function resize(){canvas.width=innerWidth*devicePixelRatio;canvas.height=innerHeight*devicePixelRatio;ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);particles=Array.from({length:Math.min(80,Math.floor(innerWidth/18))},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.2+.2,s:Math.random()*.16+.03,o:Math.random()*.32+.05}))}
   function draw(){ctx.clearRect(0,0,innerWidth,innerHeight);for(const p of particles){p.y-=p.s;if(p.y<-5){p.y=innerHeight+5;p.x=Math.random()*innerWidth}ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(170,144,255,${p.o})`;ctx.fill()}requestAnimationFrame(draw)}
